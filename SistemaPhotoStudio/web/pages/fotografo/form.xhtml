@@ -1,0 +1,62 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui"
+	>
+
+
+<ui:composition template="/template.xhtml">
+
+	<ui:define name="centro">
+	<h:form >
+    <p:panel >
+	
+
+	<h:panelGrid columns="4" >
+	<p:outputLabel value="Nome"/>
+	<p:inputText value="#{fotografoBean.fotografo.nome}" size="40"/>
+	<p:outputLabel value="CPF"/>
+	<p:inputText value="#{fotografoBean.fotografo.cpf}" size="40"/>
+	<h:outputText value="Data de Nascimento:" />  
+        <p:calendar value="#{fotografoBean.fotografo.dataNascimento}" pattern="d/M/yyyy" /> 
+	<p:outputLabel value="Endereço"/>
+	<p:inputText value="#{fotografoBean.endereco.descricao}" size="40"/>
+	<p:outputLabel value="Numero"/>
+	<p:inputText value="#{fotografoBean.endereco.numero}" size="5"/>
+	<p:outputLabel value="Bairro"/>
+	<p:inputText value="#{fotografoBean.bairro.descricao}" size="20"/>
+	<p:outputLabel value="Cidade"/>
+	<p:inputText value="#{fotografoBean.cidade.descricao}" size="25"/>
+	<p:outputLabel value="Estado"/>
+	<p:inputText value="#{fotografoBean.estado.descricao}" size="5"/>
+	<p:outputLabel value="CEP"/>
+	<p:inputText value="#{fotografoBean.endereco.cep}" size="10"/>
+	
+	<p:outputLabel value="Telefone"/>
+	<p:inputText value="#{fotografoBean.contato.telefone}" size="10"/>
+	<p:outputLabel value="Celular"/>
+	<p:inputText value="#{fotografoBean.contato.celular}" size="10"/>
+	
+	<p:outputLabel value="Email"/>
+	<p:inputText value="#{fotografoBean.contato.email}" size="35"/>
+	
+	<p:outputLabel value="Login"/>
+	<p:inputText value="#{fotografoBean.fotografo.login}" size="15"/>
+	<p:outputLabel value="Senha"/>
+	<p:password value="#{fotografoBean.fotografo.senha}" size="15"/>
+	
+	
+	
+	<p:commandButton value="Salvar" actionListener="#{fotografoBean.salvar}" icon="ui-icon-disk" /> 
+	</h:panelGrid>
+	
+	</p:panel>
+	</h:form>
+	</ui:define>
+</ui:composition>
+</html>

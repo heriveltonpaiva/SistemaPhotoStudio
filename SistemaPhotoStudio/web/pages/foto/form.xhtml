@@ -1,0 +1,68 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui"
+	>
+
+<ui:composition template="/template.xhtml">
+
+	<ui:define name="centro">
+	
+    <p:panel>
+	<h:form >
+
+	<h:panelGrid columns="2">
+	<p:outputLabel value="Nome"/>
+	<h:inputText />
+	<p:outputLabel value="Descrição"/>
+	<h:inputText />
+	<p:outputLabel value="Valor R$"/>
+	<h:inputText />
+	
+	 <h:outputText value="Escolha um Album: " />  
+        <p:selectOneMenu value="#">  
+            <f:selectItem itemLabel="--Selecione--" itemValue="" />  
+            <f:selectItem itemLabel="Album Natal" itemValue="1" />  
+            <f:selectItem itemLabel="Album Verão" itemValue="2" />  
+            <f:selectItem itemLabel="Album Outono" itemValue="3" />  
+        </p:selectOneMenu> 
+    <p:fileUpload fileUploadListener="#" mode="simple" dragDropSupport="false"  
+                  multiple="true" update="messages" sizeLimit="100000" fileLimit="3" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />  
+  
+    <p:growl id="messages" showDetail="true"/> 
+	
+	</h:panelGrid>
+	
+	<p:commandButton value="Adicionar Foto" actionListener="#" icon="ui-icon-disk" /> 
+	<p:dataTable var="obj" value="#">  
+        <p:column headerText="Nome">  
+            <h:outputText value="#" />  
+        </p:column>  
+  
+        <p:column headerText="Descrição">  
+            <h:outputText value="#" />  
+        </p:column>  
+  
+        <p:column headerText="Valor">  
+            <h:outputText value="#" />  
+        </p:column>  
+  
+        <p:column headerText="Arquivo">  
+            <h:outputText value="#" />  
+        </p:column> 
+        <p:column headerText="Ações"> 
+           <p:commandLink value="Visualizar" /><br></br>
+           <p:commandLink value="Alterar"/><br></br>
+           <p:commandLink value="Excluir"/><br></br>
+        </p:column>  
+    </p:dataTable>  
+	</h:form>
+	</p:panel>
+	</ui:define>
+</ui:composition>
+</html>

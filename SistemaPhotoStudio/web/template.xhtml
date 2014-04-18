@@ -1,0 +1,86 @@
+
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+ 
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Photo Studio</title>
+        
+         <link type="text/css" rel="stylesheet" href="css/sunny.css" />
+        
+        
+        <style type="text/css">
+            body {background-color: #eeeeee; font-size: 12px}
+         
+                .ui-layout-north {
+                    z-index:20 !important;
+                    overflow:visible !important;;
+                   
+                }
+
+                .ui-layout-north .ui-layout-unit-content {
+                    overflow:visible !important;
+                }
+            </style>
+            
+    </h:head>
+    <h:body>
+    
+    <!-- DIV CENTRAL -->
+        <div align="center">
+            <p:layout fullPage="true" style="min-width:1020px;max-width:1020px;min-height:700px">  
+                <p:layoutUnit position="north" size="200">
+                   <h:graphicImage url="" />
+                </p:layoutUnit>
+                <p:layoutUnit id="top" position="north" size="50">
+                 
+                    <p:menubar>  
+           <p:menuitem value="Página Inicial" outcome="/index.xhtml" icon="ui-icon-home" />
+  
+     
+  
+        <p:submenu label="Menu Fotografo" icon="ui-icon-person">  
+        
+            
+            <p:menuitem value="Cadastrar Albuns" outcome="/pages/album/form.xhtml" icon="ui-icon-circle-plus" /> 
+            <p:menuitem value="Cadastrar Fotos" outcome="/pages/foto/form.xhtml"  icon="ui-icon-circle-plus"/> 
+            <p:menuitem value="Cadastrar Clientes" outcome="/pages/cliente/form.xhtml" icon="ui-icon-circle-plus"/>  
+            <p:menuitem value="Consultar Albuns" outcome="/pages/album/list.xhtml" icon="ui-icon-search"/>                        
+            <p:menuitem value="Consultar Fotos" outcome="/pages/foto/list.xhtml" icon="ui-icon-search"/> 
+            <p:menuitem value="Consultar Clientes" outcome="/pages/cliente/list.xhtml" icon="ui-icon-search"/>          
+        </p:submenu>  
+      
+      <p:submenu label="Menu Administrador" icon="ui-icon-person">  
+            <p:menuitem value="Cadastrar Fotografo" outcome="/pages/fotografo/form.xhtml" icon="ui-icon-circle-plus"/> 
+            <p:menuitem value="Consultar Fotografo" outcome="/pages/fotografo/list.xhtml" icon="ui-icon-search" /> 
+            <p:menuitem value="Acesso Restrito	" url="#" icon="ui-icon-key"/> 
+            
+          </p:submenu>
+  
+        <f:facet name="options">  
+            <p:outputLabel value="Login" style="margin-right:10px"/>
+            <p:inputText style="margin-right:10px"/>
+            <p:outputLabel value="Senha" style="margin-right:10px"/>
+            <p:password style="margin-right:10px"/>  
+            <p:commandButton type="button" value="Entrar" icon="ui-icon-extlink" />  
+        </f:facet>  
+    </p:menubar>  
+                </p:layoutUnit>  
+ 
+                <p:layoutUnit position="center">  
+                    <ui:insert name="centro">
+                    
+                        Template ! :) 
+                    </ui:insert>
+                </p:layoutUnit> 
+                 <p:layoutUnit id="bottom" position="south" size="60">
+                 Sistemas de Informação 2012.1 Projeto Iniciado em 06/04/2014
+                 </p:layoutUnit>
+            </p:layout>  
+        </div>
+    </h:body>
+</html>

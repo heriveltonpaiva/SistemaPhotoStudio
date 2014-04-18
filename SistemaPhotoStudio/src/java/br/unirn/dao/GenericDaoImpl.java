@@ -14,7 +14,7 @@ import br.unirn.dominio.Estado;
 
 public  class GenericDaoImpl<T> implements GenericDao<T> {
 	
-    private EntityManagerFactory factory  = Persistence.createEntityManagerFactory("PhotoJPAPU");
+    private EntityManagerFactory factory  = Persistence.createEntityManagerFactory("SistemaPhotoStudioPU");
 	
 	protected EntityManager em = factory.createEntityManager();
 	

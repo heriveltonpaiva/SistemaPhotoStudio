@@ -5,7 +5,6 @@ import br.unirn.dao.AlbumDao;
 import br.unirn.dominio.Album;
 import br.unirn.service.AlbumService;
 import java.awt.event.ActionEvent;
-import java.util.Date;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;

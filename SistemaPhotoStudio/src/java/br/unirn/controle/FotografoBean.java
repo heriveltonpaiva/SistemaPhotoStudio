@@ -10,10 +10,7 @@ import br.unirn.dominio.Endereco;
 import br.unirn.dominio.Estado;
 import br.unirn.dominio.Usuario;
 import br.unirn.service.UsuarioService;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 

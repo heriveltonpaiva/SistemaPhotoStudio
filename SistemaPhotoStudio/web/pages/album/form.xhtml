@@ -1,0 +1,35 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui"
+	>
+
+<ui:composition template="/template.xhtml">
+
+	<ui:define name="centro">
+	
+    <p:panel>
+	<h:form >
+
+	<h:panelGrid columns="2">
+	<p:outputLabel value="Nome"/>
+	<p:inputText value="#{albumBean.album.descricao}" size="40"/>
+	<p:outputLabel value="Observação"/>
+	<p:inputText value="#{albumBean.album.obs}" size="40"/>
+        <p:outputLabel value="Data de Criação"/>
+        <p:calendar value="#{albumBean.album.data}" pattern="d/M/yyyy" /> 
+	
+	</h:panelGrid>
+	
+	<p:commandButton value="Salvar" actionListener="#{albumBean.salvar}" icon="ui-icon-disk" /> 
+	
+	</h:form>
+	</p:panel>
+	</ui:define>
+</ui:composition>
+</html>

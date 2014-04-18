@@ -1,0 +1,43 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui"
+	>
+
+<ui:composition template="/template.xhtml">
+
+	<ui:define name="centro">
+  
+
+<p:outputLabel value="Tabela de Albuns" ></p:outputLabel>
+	<h:form >
+            <p:dataTable var="obj" value="#{albumBean.lista}" rendered="#{not empty albumBean.lista}">  
+        <p:column headerText="Nome">  
+            <h:outputText value="#{obj.descricao}" />  
+        </p:column>  
+  
+        <p:column headerText="Data de Criação">  
+            <h:outputText value="#{obj.data}" />  
+        </p:column>  
+  
+        <p:column headerText="Observação">  
+            <h:outputText value="#{obj.obs}" />  
+        </p:column>  
+  
+        <p:column headerText="Ações"> 
+           <p:commandLink value="Visualizar" /><br></br>
+           <p:commandLink value="Alterar"/><br></br>
+           <p:commandLink value="Excluir"/><br></br>
+        </p:column>  
+    </p:dataTable>  
+	
+	</h:form>
+
+	</ui:define>
+</ui:composition>
+</html>
