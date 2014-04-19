@@ -7,9 +7,14 @@
 package br.unirn.dominio;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
-import javax.persistence.EmbeddedId;
+import javax.persistence.Basic;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -17,6 +22,10 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -26,37 +35,117 @@ import javax.persistence.Table;
 @Table(name = "cliente")
 @NamedQueries({
     @NamedQuery(name = "Cliente.findAll", query = "SELECT c FROM Cliente c"),
-    @NamedQuery(name = "Cliente.findByIdCliente", query = "SELECT c FROM Cliente c WHERE c.clientePK.idCliente = :idCliente"),
-    @NamedQuery(name = "Cliente.findByIdUsuarioUsuario", query = "SELECT c FROM Cliente c WHERE c.clientePK.idUsuarioUsuario = :idUsuarioUsuario")})
+    @NamedQuery(name = "Cliente.findByIdCliente", query = "SELECT c FROM Cliente c WHERE c.idCliente = :idCliente"),
+    @NamedQuery(name = "Cliente.findByNome", query = "SELECT c FROM Cliente c WHERE c.nome = :nome"),
+    @NamedQuery(name = "Cliente.findByLogin", query = "SELECT c FROM Cliente c WHERE c.login = :login"),
+    @NamedQuery(name = "Cliente.findBySenha", query = "SELECT c FROM Cliente c WHERE c.senha = :senha"),
+    @NamedQuery(name = "Cliente.findByCpf", query = "SELECT c FROM Cliente c WHERE c.cpf = :cpf"),
+    @NamedQuery(name = "Cliente.findByDataNascimento", query = "SELECT c FROM Cliente c WHERE c.dataNascimento = :dataNascimento")})
 public class Cliente implements Serializable {
     private static final long serialVersionUID = 1L;
-    @EmbeddedId
-    protected ClientePK clientePK;
-    @OneToMany(mappedBy = "cliente")
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "id_cliente")
+    private Integer idCliente;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 2147483647)
+    @Column(name = "nome")
+    private String nome;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 2147483647)
+    @Column(name = "login")
+    private String login;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 2147483647)
+    @Column(name = "senha")
+    private String senha;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 2147483647)
+    @Column(name = "cpf")
+    private String cpf;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "data_nascimento")
+    @Temporal(TemporalType.DATE)
+    private Date dataNascimento;
+    @OneToMany(mappedBy = "idClienteCliente")
     private List<Fotografocliente> fotografoclienteList;
-    @OneToOne(mappedBy = "cliente")
+    @OneToOne(mappedBy = "idClienteCliente")
     private Carrinho carrinho;
-    @JoinColumn(name = "id_usuario_usuario", referencedColumnName = "id_usuario", insertable = false, updatable = false)
-    @ManyToOne(optional = false)
-    private Usuario usuario;
+    @JoinColumn(name = "id_endereco_endereco", referencedColumnName = "id_endereco")
+    @ManyToOne
+    private Endereco idEnderecoEndereco;
+    @JoinColumn(name = "id_contato_contato", referencedColumnName = "id_contato")
+    @ManyToOne
+    private Contato idContatoContato;
 
     public Cliente() {
     }
 
-    public Cliente(ClientePK clientePK) {
-        this.clientePK = clientePK;
+    public Cliente(Integer idCliente) {
+        this.idCliente = idCliente;
     }
 
-    public Cliente(int idCliente, int idUsuarioUsuario) {
-        this.clientePK = new ClientePK(idCliente, idUsuarioUsuario);
+    public Cliente(Integer idCliente, String nome, String login, String senha, String cpf, Date dataNascimento) {
+        this.idCliente = idCliente;
+        this.nome = nome;
+        this.login = login;
+        this.senha = senha;
+        this.cpf = cpf;
+        this.dataNascimento = dataNascimento;
     }
 
-    public ClientePK getClientePK() {
-        return clientePK;
+    public Integer getIdCliente() {
+        return idCliente;
     }
 
-    public void setClientePK(ClientePK clientePK) {
-        this.clientePK = clientePK;
+    public void setIdCliente(Integer idCliente) {
+        this.idCliente = idCliente;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public Date getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public void setDataNascimento(Date dataNascimento) {
+        this.dataNascimento = dataNascimento;
     }
 
     public List<Fotografocliente> getFotografoclienteList() {
@@ -75,18 +164,26 @@ public class Cliente implements Serializable {
         this.carrinho = carrinho;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public Endereco getIdEnderecoEndereco() {
+        return idEnderecoEndereco;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setIdEnderecoEndereco(Endereco idEnderecoEndereco) {
+        this.idEnderecoEndereco = idEnderecoEndereco;
+    }
+
+    public Contato getIdContatoContato() {
+        return idContatoContato;
+    }
+
+    public void setIdContatoContato(Contato idContatoContato) {
+        this.idContatoContato = idContatoContato;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (clientePK != null ? clientePK.hashCode() : 0);
+        hash += (idCliente != null ? idCliente.hashCode() : 0);
         return hash;
     }
 
@@ -97,7 +194,7 @@ public class Cliente implements Serializable {
             return false;
         }
         Cliente other = (Cliente) object;
-        if ((this.clientePK == null && other.clientePK != null) || (this.clientePK != null && !this.clientePK.equals(other.clientePK))) {
+        if ((this.idCliente == null && other.idCliente != null) || (this.idCliente != null && !this.idCliente.equals(other.idCliente))) {
             return false;
         }
         return true;
@@ -105,7 +202,7 @@ public class Cliente implements Serializable {
 
     @Override
     public String toString() {
-        return "br.unirn.dominio.Cliente[ clientePK=" + clientePK + " ]";
+        return "br.unirn.dominio.Cliente[ idCliente=" + idCliente + " ]";
     }
     
 }

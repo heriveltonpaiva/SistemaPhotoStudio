@@ -10,19 +10,16 @@
 		<class>br.unirn.dominio.Endereco</class>
 		<class>br.unirn.dominio.Foto</class>
 		<class>br.unirn.dominio.Fotografo</class>
-                <class>br.unirn.dominio.FotografoPK</class>
 		<class>br.unirn.dominio.Fotografocliente</class>
 		<class>br.unirn.dominio.Gestor</class>
-                <class>br.unirn.dominio.GestorPK</class>
-		<class>br.unirn.dominio.Usuario</class>
 		<class>br.unirn.dominio.Venda</class>
 		<class>br.unirn.dominio.Cliente</class>
-                <class>br.unirn.dominio.ClientePK</class>
+            
 		
 		 <properties>
   <!-- dados da conexao -->
    <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
-  <property name="javax.persistence.jdbc.url"  value="jdbc:postgresql://localhost:5432/BancoPhoto" />
+  <property name="javax.persistence.jdbc.url"  value="jdbc:postgresql://localhost:5432/BancoFinal" />
   <property name="javax.persistence.jdbc.user" value="postgres" />
   <property name="javax.persistence.jdbc.password" value="280394" />
   </properties>

@@ -50,7 +50,9 @@ public class Contato implements Serializable {
     @Column(name = "email")
     private String email;
     @OneToMany(mappedBy = "idContatoContato")
-    private List<Usuario> usuarioList;
+    private List<Fotografo> fotografoList;
+    @OneToMany(mappedBy = "idContatoContato")
+    private List<Cliente> clienteList;
 
     public Contato() {
     }
@@ -91,12 +93,20 @@ public class Contato implements Serializable {
         this.email = email;
     }
 
-    public List<Usuario> getUsuarioList() {
-        return usuarioList;
+    public List<Fotografo> getFotografoList() {
+        return fotografoList;
     }
 
-    public void setUsuarioList(List<Usuario> usuarioList) {
-        this.usuarioList = usuarioList;
+    public void setFotografoList(List<Fotografo> fotografoList) {
+        this.fotografoList = fotografoList;
+    }
+
+    public List<Cliente> getClienteList() {
+        return clienteList;
+    }
+
+    public void setClienteList(List<Cliente> clienteList) {
+        this.clienteList = clienteList;
     }
 
     @Override

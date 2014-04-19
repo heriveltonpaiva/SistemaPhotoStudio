@@ -14,7 +14,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -36,16 +35,12 @@ public class Fotografocliente implements Serializable {
     @Basic(optional = false)
     @Column(name = "id_fotografocliente")
     private Integer idFotografocliente;
-    @JoinColumns({
-        @JoinColumn(name = "id_fotografo_fotografo", referencedColumnName = "id_fotografo"),
-        @JoinColumn(name = "id_usuario_usuario_fotografo", referencedColumnName = "id_usuario_usuario")})
+    @JoinColumn(name = "id_fotografo_fotografo", referencedColumnName = "id_fotografo")
     @ManyToOne
-    private Fotografo fotografo;
-    @JoinColumns({
-        @JoinColumn(name = "id_cliente_cliente", referencedColumnName = "id_cliente"),
-        @JoinColumn(name = "id_usuario_usuario_cliente", referencedColumnName = "id_usuario_usuario")})
+    private Fotografo idFotografoFotografo;
+    @JoinColumn(name = "id_cliente_cliente", referencedColumnName = "id_cliente")
     @ManyToOne
-    private Cliente cliente;
+    private Cliente idClienteCliente;
 
     public Fotografocliente() {
     }
@@ -62,20 +57,20 @@ public class Fotografocliente implements Serializable {
         this.idFotografocliente = idFotografocliente;
     }
 
-    public Fotografo getFotografo() {
-        return fotografo;
+    public Fotografo getIdFotografoFotografo() {
+        return idFotografoFotografo;
     }
 
-    public void setFotografo(Fotografo fotografo) {
-        this.fotografo = fotografo;
+    public void setIdFotografoFotografo(Fotografo idFotografoFotografo) {
+        this.idFotografoFotografo = idFotografoFotografo;
     }
 
-    public Cliente getCliente() {
-        return cliente;
+    public Cliente getIdClienteCliente() {
+        return idClienteCliente;
     }
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+    public void setIdClienteCliente(Cliente idClienteCliente) {
+        this.idClienteCliente = idClienteCliente;
     }
 
     @Override

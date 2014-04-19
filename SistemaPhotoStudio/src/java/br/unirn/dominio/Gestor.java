@@ -8,14 +8,17 @@ package br.unirn.dominio;
 
 import java.io.Serializable;
 import java.util.List;
-import javax.persistence.EmbeddedId;
+import javax.persistence.Basic;
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -25,43 +28,54 @@ import javax.persistence.Table;
 @Table(name = "gestor")
 @NamedQueries({
     @NamedQuery(name = "Gestor.findAll", query = "SELECT g FROM Gestor g"),
-    @NamedQuery(name = "Gestor.findByIdGestor", query = "SELECT g FROM Gestor g WHERE g.gestorPK.idGestor = :idGestor"),
-    @NamedQuery(name = "Gestor.findByIdUsuarioUsuario", query = "SELECT g FROM Gestor g WHERE g.gestorPK.idUsuarioUsuario = :idUsuarioUsuario")})
+    @NamedQuery(name = "Gestor.findByIdGestor", query = "SELECT g FROM Gestor g WHERE g.idGestor = :idGestor"),
+    @NamedQuery(name = "Gestor.findByLogin", query = "SELECT g FROM Gestor g WHERE g.login = :login"),
+    @NamedQuery(name = "Gestor.findBySenha", query = "SELECT g FROM Gestor g WHERE g.senha = :senha")})
 public class Gestor implements Serializable {
     private static final long serialVersionUID = 1L;
-    @EmbeddedId
-    protected GestorPK gestorPK;
-    @JoinColumn(name = "id_usuario_usuario", referencedColumnName = "id_usuario", insertable = false, updatable = false)
-    @ManyToOne(optional = false)
-    private Usuario usuario;
-    @OneToMany(mappedBy = "gestor")
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "id_gestor")
+    private Integer idGestor;
+    @Size(max = 2147483647)
+    @Column(name = "login")
+    private String login;
+    @Size(max = 2147483647)
+    @Column(name = "senha")
+    private String senha;
+    @OneToMany(mappedBy = "idGestorGestor")
     private List<Fotografo> fotografoList;
 
     public Gestor() {
     }
 
-    public Gestor(GestorPK gestorPK) {
-        this.gestorPK = gestorPK;
+    public Gestor(Integer idGestor) {
+        this.idGestor = idGestor;
     }
 
-    public Gestor(int idGestor, int idUsuarioUsuario) {
-        this.gestorPK = new GestorPK(idGestor, idUsuarioUsuario);
+    public Integer getIdGestor() {
+        return idGestor;
     }
 
-    public GestorPK getGestorPK() {
-        return gestorPK;
+    public void setIdGestor(Integer idGestor) {
+        this.idGestor = idGestor;
     }
 
-    public void setGestorPK(GestorPK gestorPK) {
-        this.gestorPK = gestorPK;
+    public String getLogin() {
+        return login;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public void setLogin(String login) {
+        this.login = login;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 
     public List<Fotografo> getFotografoList() {
@@ -75,7 +89,7 @@ public class Gestor implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (gestorPK != null ? gestorPK.hashCode() : 0);
+        hash += (idGestor != null ? idGestor.hashCode() : 0);
         return hash;
     }
 
@@ -86,7 +100,7 @@ public class Gestor implements Serializable {
             return false;
         }
         Gestor other = (Gestor) object;
-        if ((this.gestorPK == null && other.gestorPK != null) || (this.gestorPK != null && !this.gestorPK.equals(other.gestorPK))) {
+        if ((this.idGestor == null && other.idGestor != null) || (this.idGestor != null && !this.idGestor.equals(other.idGestor))) {
             return false;
         }
         return true;
@@ -94,7 +108,7 @@ public class Gestor implements Serializable {
 
     @Override
     public String toString() {
-        return "br.unirn.dominio.Gestor[ gestorPK=" + gestorPK + " ]";
+        return "br.unirn.dominio.Gestor[ idGestor=" + idGestor + " ]";
     }
     
 }

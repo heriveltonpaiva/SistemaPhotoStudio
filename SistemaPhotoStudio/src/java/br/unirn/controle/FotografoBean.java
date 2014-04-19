@@ -2,14 +2,15 @@ package br.unirn.controle;
 
 
 
-import br.unirn.dao.UsuarioDao;
+
+import br.unirn.dao.FotografoDao;
 import br.unirn.dominio.Bairro;
 import br.unirn.dominio.Cidade;
 import br.unirn.dominio.Contato;
 import br.unirn.dominio.Endereco;
 import br.unirn.dominio.Estado;
-import br.unirn.dominio.Usuario;
-import br.unirn.service.UsuarioService;
+import br.unirn.dominio.Fotografo;
+import br.unirn.service.FotografoService;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -23,15 +24,15 @@ public class FotografoBean {
 	private Bairro bairro;
 	private Endereco endereco;
 	private Contato contato;
-	private Usuario fotografo;
-	private UsuarioService fotografoService;
-	private UsuarioDao dao = new UsuarioDao();
+	private Fotografo fotografo;
+	private FotografoService fotografoService;
+	private FotografoDao dao = new FotografoDao();
 	
 	public FotografoBean() {
 	   
 	}
 
-    public List<Usuario> getLista() {
+    public List<Fotografo> getLista() {
        
         return dao.findAll();
     }
@@ -40,18 +41,18 @@ public class FotografoBean {
 	public void salvar(){
           
 	   if(fotografoService==null){
-        fotografoService = new UsuarioService();
+        fotografoService = new FotografoService();
         }
 	   fotografoService.adicionarUsuario(fotografo, endereco,bairro,cidade,estado,contato);
-          this.fotografo = new  Usuario();
+          this.fotografo = new  Fotografo();
 	}
 	
 
 	
 	
-	public Usuario getFotografo() {
+	public Fotografo getFotografo() {
 		if(fotografo==null){
-			fotografo = new Usuario();
+			fotografo = new Fotografo();
 		}
 		return fotografo;
 	}

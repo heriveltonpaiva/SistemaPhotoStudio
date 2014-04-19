@@ -18,14 +18,14 @@ public class AlbumBean {
 
 	private Album album;
         private AlbumDao dao = new AlbumDao();
-        private List<Album> lista = dao.findAll();
+      
 	public AlbumBean(){
 		album = new Album();
 		
 	}     
 
     public List<Album> getLista() {
-        return lista;
+        return dao.findAll();
     }
         
         

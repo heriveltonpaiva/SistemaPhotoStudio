@@ -36,8 +36,8 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "Foto.findByArquivo", query = "SELECT f FROM Foto f WHERE f.arquivo = :arquivo"),
     @NamedQuery(name = "Foto.findByDataUpload", query = "SELECT f FROM Foto f WHERE f.dataUpload = :dataUpload"),
     @NamedQuery(name = "Foto.findByObs", query = "SELECT f FROM Foto f WHERE f.obs = :obs"),
-    @NamedQuery(name = "Foto.findByContenttype", query = "SELECT f FROM Foto f WHERE f.contenttype = :contenttype"),
-    @NamedQuery(name = "Foto.findByFotoNome", query = "SELECT f FROM Foto f WHERE f.fotoNome = :fotoNome")})
+    @NamedQuery(name = "Foto.findByFotoNome", query = "SELECT f FROM Foto f WHERE f.fotoNome = :fotoNome"),
+    @NamedQuery(name = "Foto.findByContenttype", query = "SELECT f FROM Foto f WHERE f.contenttype = :contenttype")})
 public class Foto implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -69,13 +69,13 @@ public class Foto implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 2147483647)
-    @Column(name = "contenttype")
-    private String contenttype;
+    @Column(name = "foto_nome")
+    private String fotoNome;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 2147483647)
-    @Column(name = "foto_nome")
-    private String fotoNome;
+    @Column(name = "contenttype")
+    private String contenttype;
     @JoinColumn(name = "id_album_album", referencedColumnName = "id_album")
     @ManyToOne
     private Album idAlbumAlbum;
@@ -87,14 +87,14 @@ public class Foto implements Serializable {
         this.idFoto = idFoto;
     }
 
-    public Foto(Integer idFoto, String descricao, BigInteger valor, long arquivo, String dataUpload, String contenttype, String fotoNome) {
+    public Foto(Integer idFoto, String descricao, BigInteger valor, long arquivo, String dataUpload, String fotoNome, String contenttype) {
         this.idFoto = idFoto;
         this.descricao = descricao;
         this.valor = valor;
         this.arquivo = arquivo;
         this.dataUpload = dataUpload;
-        this.contenttype = contenttype;
         this.fotoNome = fotoNome;
+        this.contenttype = contenttype;
     }
 
     public Integer getIdFoto() {
@@ -145,20 +145,20 @@ public class Foto implements Serializable {
         this.obs = obs;
     }
 
-    public String getContenttype() {
-        return contenttype;
-    }
-
-    public void setContenttype(String contenttype) {
-        this.contenttype = contenttype;
-    }
-
     public String getFotoNome() {
         return fotoNome;
     }
 
     public void setFotoNome(String fotoNome) {
         this.fotoNome = fotoNome;
+    }
+
+    public String getContenttype() {
+        return contenttype;
+    }
+
+    public void setContenttype(String contenttype) {
+        this.contenttype = contenttype;
     }
 
     public Album getIdAlbumAlbum() {

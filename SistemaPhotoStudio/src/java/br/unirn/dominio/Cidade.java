@@ -45,11 +45,11 @@ public class Cidade implements Serializable {
     @Size(min = 1, max = 2147483647)
     @Column(name = "descricao")
     private String descricao;
+    @OneToMany(mappedBy = "idCidadeCidade")
+    private List<Bairro> bairroList;
     @JoinColumn(name = "id_estado_estado", referencedColumnName = "id_estado")
     @ManyToOne
     private Estado idEstadoEstado;
-    @OneToMany(mappedBy = "idCidadeCidade")
-    private List<Bairro> bairroList;
 
     public Cidade() {
     }
@@ -79,20 +79,20 @@ public class Cidade implements Serializable {
         this.descricao = descricao;
     }
 
-    public Estado getIdEstadoEstado() {
-        return idEstadoEstado;
-    }
-
-    public void setIdEstadoEstado(Estado idEstadoEstado) {
-        this.idEstadoEstado = idEstadoEstado;
-    }
-
     public List<Bairro> getBairroList() {
         return bairroList;
     }
 
     public void setBairroList(List<Bairro> bairroList) {
         this.bairroList = bairroList;
+    }
+
+    public Estado getIdEstadoEstado() {
+        return idEstadoEstado;
+    }
+
+    public void setIdEstadoEstado(Estado idEstadoEstado) {
+        this.idEstadoEstado = idEstadoEstado;
     }
 
     @Override

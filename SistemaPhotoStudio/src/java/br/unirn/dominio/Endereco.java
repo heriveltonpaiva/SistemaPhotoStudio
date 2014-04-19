@@ -57,7 +57,9 @@ public class Endereco implements Serializable {
     @Column(name = "complemento")
     private String complemento;
     @OneToMany(mappedBy = "idEnderecoEndereco")
-    private List<Usuario> usuarioList;
+    private List<Fotografo> fotografoList;
+    @OneToMany(mappedBy = "idEnderecoEndereco")
+    private List<Cliente> clienteList;
     @JoinColumn(name = "id_bairro_bairro", referencedColumnName = "id_bairro")
     @ManyToOne
     private Bairro idBairroBairro;
@@ -114,12 +116,20 @@ public class Endereco implements Serializable {
         this.complemento = complemento;
     }
 
-    public List<Usuario> getUsuarioList() {
-        return usuarioList;
+    public List<Fotografo> getFotografoList() {
+        return fotografoList;
     }
 
-    public void setUsuarioList(List<Usuario> usuarioList) {
-        this.usuarioList = usuarioList;
+    public void setFotografoList(List<Fotografo> fotografoList) {
+        this.fotografoList = fotografoList;
+    }
+
+    public List<Cliente> getClienteList() {
+        return clienteList;
+    }
+
+    public void setClienteList(List<Cliente> clienteList) {
+        this.clienteList = clienteList;
     }
 
     public Bairro getIdBairroBairro() {

@@ -16,7 +16,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -59,11 +58,9 @@ public class Album implements Serializable {
     @Size(max = 100)
     @Column(name = "obs")
     private String obs;
-    @JoinColumns({
-        @JoinColumn(name = "id_fotografo_fotografo", referencedColumnName = "id_fotografo"),
-        @JoinColumn(name = "id_usuario_usuario_fotografo", referencedColumnName = "id_usuario_usuario")})
+    @JoinColumn(name = "id_fotografo_fotografo", referencedColumnName = "id_fotografo")
     @ManyToOne
-    private Fotografo fotografo;
+    private Fotografo idFotografoFotografo;
     @OneToMany(mappedBy = "idAlbumAlbum")
     private List<Foto> fotoList;
 
@@ -112,12 +109,12 @@ public class Album implements Serializable {
         this.obs = obs;
     }
 
-    public Fotografo getFotografo() {
-        return fotografo;
+    public Fotografo getIdFotografoFotografo() {
+        return idFotografoFotografo;
     }
 
-    public void setFotografo(Fotografo fotografo) {
-        this.fotografo = fotografo;
+    public void setIdFotografoFotografo(Fotografo idFotografoFotografo) {
+        this.idFotografoFotografo = idFotografoFotografo;
     }
 
     public List<Foto> getFotoList() {

@@ -16,7 +16,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -68,11 +67,9 @@ public class Venda implements Serializable {
     @NotNull
     @Column(name = "valor_venda")
     private BigInteger valorVenda;
-    @JoinColumns({
-        @JoinColumn(name = "id_fotografo_fotografo", referencedColumnName = "id_fotografo"),
-        @JoinColumn(name = "id_usuario_usuario_fotografo", referencedColumnName = "id_usuario_usuario")})
+    @JoinColumn(name = "id_fotografo_fotografo", referencedColumnName = "id_fotografo")
     @ManyToOne
-    private Fotografo fotografo;
+    private Fotografo idFotografoFotografo;
 
     public Venda() {
     }
@@ -137,12 +134,12 @@ public class Venda implements Serializable {
         this.valorVenda = valorVenda;
     }
 
-    public Fotografo getFotografo() {
-        return fotografo;
+    public Fotografo getIdFotografoFotografo() {
+        return idFotografoFotografo;
     }
 
-    public void setFotografo(Fotografo fotografo) {
-        this.fotografo = fotografo;
+    public void setIdFotografoFotografo(Fotografo idFotografoFotografo) {
+        this.idFotografoFotografo = idFotografoFotografo;
     }
 
     @Override

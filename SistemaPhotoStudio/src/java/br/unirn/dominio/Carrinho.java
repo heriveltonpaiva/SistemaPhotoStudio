@@ -15,7 +15,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
@@ -59,11 +58,9 @@ public class Carrinho implements Serializable {
     @NotNull
     @Column(name = "valor_venda")
     private BigInteger valorVenda;
-    @JoinColumns({
-        @JoinColumn(name = "id_cliente_cliente", referencedColumnName = "id_cliente"),
-        @JoinColumn(name = "id_usuario_usuario_cliente", referencedColumnName = "id_usuario_usuario")})
+    @JoinColumn(name = "id_cliente_cliente", referencedColumnName = "id_cliente")
     @OneToOne
-    private Cliente cliente;
+    private Cliente idClienteCliente;
 
     public Carrinho() {
     }
@@ -119,12 +116,12 @@ public class Carrinho implements Serializable {
         this.valorVenda = valorVenda;
     }
 
-    public Cliente getCliente() {
-        return cliente;
+    public Cliente getIdClienteCliente() {
+        return idClienteCliente;
     }
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+    public void setIdClienteCliente(Cliente idClienteCliente) {
+        this.idClienteCliente = idClienteCliente;
     }
 
     @Override
