@@ -14,8 +14,9 @@
 	<ui:define name="centro">
 	
     <p:panel>
+       
 	<h:form >
-
+       
 	<h:panelGrid columns="2">
 	<p:outputLabel value="Nome"/>
 	<p:inputText value="#{albumBean.album.descricao}" size="40"/>
@@ -27,7 +28,7 @@
 	</h:panelGrid>
 	
 	<p:commandButton value="Salvar" actionListener="#{albumBean.salvar}" icon="ui-icon-disk" /> 
-	
+	<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />  
 	</h:form>
 	</p:panel>
 	</ui:define>

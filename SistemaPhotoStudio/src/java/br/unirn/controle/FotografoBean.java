@@ -12,8 +12,10 @@ import br.unirn.dominio.Estado;
 import br.unirn.dominio.Fotografo;
 import br.unirn.service.FotografoService;
 import java.util.List;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 @ManagedBean
 @SessionScoped
@@ -26,16 +28,16 @@ public class FotografoBean {
 	private Contato contato;
 	private Fotografo fotografo;
 	private FotografoService fotografoService;
-	private FotografoDao dao = new FotografoDao();
+	//private FotografoDao dao = new FotografoDao();
 	
 	public FotografoBean() {
 	   
 	}
 
-    public List<Fotografo> getLista() {
+   // public List<Fotografo> getLista() {
        
-        return dao.findAll();
-    }
+       // return dao.findAll();
+   // }
 
 	
 	public void salvar(){
@@ -43,8 +45,15 @@ public class FotografoBean {
 	   if(fotografoService==null){
         fotografoService = new FotografoService();
         }
-	   fotografoService.adicionarUsuario(fotografo, endereco,bairro,cidade,estado,contato);
-          this.fotografo = new  Fotografo();
+           
+            try {
+            fotografoService.adicionarUsuario(fotografo, endereco,bairro,cidade,estado,contato); 
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"","Registro Cadastrado com Sucesso!"));   
+            } catch (Exception e) {
+                  FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"", "Erro na Inserção"+e.getMessage()));  
+         
+            }
+	   this.fotografo = new  Fotografo();
 	}
 	
 

@@ -49,12 +49,13 @@ public class Fotografo implements Serializable {
     private Integer idFotografo;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 2147483647)
+    @Size(min = 1, max = 100)
     @Column(name = "nome")
+    
     private String nome;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 2147483647)
+    @Size(min = 1, max = 100 )
     @Column(name = "cpf_fotografo")
     private String cpfFotografo;
     @Basic(optional = false)

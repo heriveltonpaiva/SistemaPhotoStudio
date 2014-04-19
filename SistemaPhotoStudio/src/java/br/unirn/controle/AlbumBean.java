@@ -9,6 +9,8 @@ import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.component.UIComponent;
+import javax.faces.component.UIPanel;
 import javax.faces.context.FacesContext;
 
 @ManagedBean
@@ -17,16 +19,16 @@ import javax.faces.context.FacesContext;
 public class AlbumBean {
 
 	private Album album;
-        private AlbumDao dao = new AlbumDao();
-      
+     //   private AlbumDao dao = new AlbumDao();
+        private UIPanel panelform;
 	public AlbumBean(){
 		album = new Album();
 		
 	}     
 
-    public List<Album> getLista() {
-        return dao.findAll();
-    }
+  //  public List<Album> getLista() {
+   //     return dao.findAll();
+  //  }
         
         
         
@@ -41,16 +43,26 @@ public class AlbumBean {
 	
 	public void salvar(){
 		
-		
-		
 		AlbumService n = new AlbumService();
-		
-		n.adicionarAlbum(album);
+                 
+		          try {
+                n.adicionarAlbum(album);
                 this.album = new Album();
+               
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"","Registro Cadastrado com Sucesso!"));  
+   
+            } catch (Exception e) {
+          
+           FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"", "Erro na Inserção"+e.getMessage()));  
+          this.album = new Album();
+            }
+		
+            
 	}
-	
-         public void addInfo(ActionEvent actionEvent) {  
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Registro Cadastrado com Sucesso!",""));  
-    } 
+        
+       
+ 
+
+    
 	
 }

@@ -14,8 +14,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -33,11 +32,11 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "Foto.findByIdFoto", query = "SELECT f FROM Foto f WHERE f.idFoto = :idFoto"),
     @NamedQuery(name = "Foto.findByDescricao", query = "SELECT f FROM Foto f WHERE f.descricao = :descricao"),
     @NamedQuery(name = "Foto.findByValor", query = "SELECT f FROM Foto f WHERE f.valor = :valor"),
-    @NamedQuery(name = "Foto.findByArquivo", query = "SELECT f FROM Foto f WHERE f.arquivo = :arquivo"),
     @NamedQuery(name = "Foto.findByDataUpload", query = "SELECT f FROM Foto f WHERE f.dataUpload = :dataUpload"),
     @NamedQuery(name = "Foto.findByObs", query = "SELECT f FROM Foto f WHERE f.obs = :obs"),
     @NamedQuery(name = "Foto.findByFotoNome", query = "SELECT f FROM Foto f WHERE f.fotoNome = :fotoNome"),
-    @NamedQuery(name = "Foto.findByContenttype", query = "SELECT f FROM Foto f WHERE f.contenttype = :contenttype")})
+    @NamedQuery(name = "Foto.findByContenttype", query = "SELECT f FROM Foto f WHERE f.contenttype = :contenttype"),
+    @NamedQuery(name = "Foto.findByIdAlbumAlbum", query = "SELECT f FROM Foto f WHERE f.idAlbumAlbum = :idAlbumAlbum")})
 public class Foto implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -56,8 +55,9 @@ public class Foto implements Serializable {
     private BigInteger valor;
     @Basic(optional = false)
     @NotNull
+    @Lob
     @Column(name = "arquivo")
-    private long arquivo;
+    private byte[] arquivo;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 2147483647)
@@ -76,9 +76,8 @@ public class Foto implements Serializable {
     @Size(min = 1, max = 2147483647)
     @Column(name = "contenttype")
     private String contenttype;
-    @JoinColumn(name = "id_album_album", referencedColumnName = "id_album")
-    @ManyToOne
-    private Album idAlbumAlbum;
+    @Column(name = "id_album_album")
+    private Integer idAlbumAlbum;
 
     public Foto() {
     }
@@ -87,7 +86,7 @@ public class Foto implements Serializable {
         this.idFoto = idFoto;
     }
 
-    public Foto(Integer idFoto, String descricao, BigInteger valor, long arquivo, String dataUpload, String fotoNome, String contenttype) {
+    public Foto(Integer idFoto, String descricao, BigInteger valor, byte[] arquivo, String dataUpload, String fotoNome, String contenttype) {
         this.idFoto = idFoto;
         this.descricao = descricao;
         this.valor = valor;
@@ -121,11 +120,11 @@ public class Foto implements Serializable {
         this.valor = valor;
     }
 
-    public long getArquivo() {
+    public byte[] getArquivo() {
         return arquivo;
     }
 
-    public void setArquivo(long arquivo) {
+    public void setArquivo(byte[] arquivo) {
         this.arquivo = arquivo;
     }
 
@@ -161,11 +160,11 @@ public class Foto implements Serializable {
         this.contenttype = contenttype;
     }
 
-    public Album getIdAlbumAlbum() {
+    public Integer getIdAlbumAlbum() {
         return idAlbumAlbum;
     }
 
-    public void setIdAlbumAlbum(Album idAlbumAlbum) {
+    public void setIdAlbumAlbum(Integer idAlbumAlbum) {
         this.idAlbumAlbum = idAlbumAlbum;
     }
 
